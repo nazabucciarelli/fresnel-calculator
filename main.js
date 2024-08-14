@@ -9,6 +9,14 @@ const closeModalButton = document.getElementById("closeModal");
 const acceptModalButton = document.getElementById("acceptModal");
 const result = document.getElementById("result");
 
+function trunc (x, posiciones = 0) {
+    var s = x.toString()
+    var l = s.length
+    var decimalLength = s.indexOf('.') + 1
+    var numStr = s.substr(0, decimalLength + posiciones)
+    return Number(numStr)
+  }
+
 const handleFormSubmit = (event) => {
     event.preventDefault();
     modal.classList.add('show');
@@ -17,7 +25,7 @@ const handleFormSubmit = (event) => {
     if(isNaN(operationResult)){
         operationResult = 0;
     }
-    result.textContent = "El radio de la primera zona de Fresnel es de " + operationResult.toFixed(2) + " metros.";
+    result.textContent = "El radio de la primera zona de Fresnel es de " + trunc(operationResult,2) + " metros.";
 }
 
 const handleCloseModal = () => {
